@@ -1,0 +1,18 @@
+  {
+    "name": "CREATE_QUESTION",
+    "displayName": "Create Question",
+    "description": "Create English practice question.",
+    "skill": "CREATE_QUESTION",
+    "prompt": "If you saw user input create question.",
+    "value": "The renowned author's latest novel, as well as his earlier works, captivated readers from around the world.",
+    "formats": {
+      "standard": "Creating English practice question."
+    },
+    "handlerHook": "english_practice:handle_create_question_skill",
+
+    "hack_prompt": "If you saw user input `create question`.",
+    "hack_pasttense": "",
+    "hack_usage": "You are now role-playing as a senior English teacher.\nWrite a intermediate-level English Grammar Fill-in-the-Blank Question.\nMake sure the question you selected is inside of curly brackets '{}' for easy parsing.\nExplain why you chose the question.\nDo not tell the user the answer, but wait till the user gives it.",
+    "hack_delay": true,
+    "hack_desc": "You are now role-playing as a senior English teacher."
+  }

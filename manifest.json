@@ -1,0 +1,23 @@
+{
+  "name": "english_practice",
+  "title": "English practice",
+  "description": "Gives the companion the ability to create English practice questions and give feedback on the user's answers.",
+  "authors": [
+    {
+      "name": "Vis",
+      "email": "gonnavis@gmail.com",
+      "url": "http://gonnavis.com"
+    }
+  ],
+  "version": "1.0",
+  "compatibility": {
+    "minimum": "0.9.3",
+    "verified": "0.9.3"
+  },
+  "skills": [
+    "skills/create_question.json.hbs"
+  ],
+  "scripts": [
+    "scripts/english_practice.js"
+  ]
+}
