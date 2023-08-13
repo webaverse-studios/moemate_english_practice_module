@@ -4,7 +4,7 @@ function _handleCreateQuestionSkill(event) {
     // window.companion.SendMessage({ type: "TEXT", user: event.name, value: event.value, timestamp: Date.now(), alt: responseObj.description});
     // window.companion.SendMessage({ type: "TEXT", user: event.name, value: event.value, timestamp: Date.now(), alt: 'alt'});
     setTimeout(() => {
-        window.hooks.emit("hack_delay", `You created this question {${event.value}}, just write it as is, don't change anything, don't speak anything else!`);
+        window.hooks.emit("hack_delay", `You created this question {${event.value}}, don't answer the question, just write the question as is (keep the blank!), don't change anything, don't speak anything else!`);
     }, 100);
 }
 
