@@ -27,6 +27,10 @@ export const PromptSelector = () => {
     // window.onChat({ type: 'text', value: `Explain why.` });
   }
 
+  const sendExplainWhy = () => {
+    window.onChat({ type: 'text', value: `Explain why.` });
+  }
+
   return (
     <>
       {isOpen &&
@@ -55,6 +59,8 @@ export const PromptSelector = () => {
           </select>
 
           <button onClick={sendPrompt}>Send</button>
+
+          <button onClick={sendExplainWhy}>Explain why</button>
 
         </div>
       }
