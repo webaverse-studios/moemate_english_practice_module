@@ -14,11 +14,10 @@
     "minimum": "0.9.3",
     "verified": "0.9.3"
   },
-  "skills": [
-    "skills/create_question.json.hbs",
-    "skills/check_answer.json.hbs"
-  ],
   "scripts": [
     "scripts/english_practice.js"
+  ],
+  "components": [
+    "components/PromptSelector.jsx"
   ]
 }
