@@ -17,5 +17,5 @@
 export function init() {
     // window.hooks.on('english_practice:handle_create_question_skill', _handleCreateQuestionSkill)
     // window.hooks.on('english_practice:handle_check_answer_skill', _handleCheckAnswerSkill)
-    window.components.AddComponentToScreen('chat-input-actions', 'PromptSelector');
+    window.components.AddComponentToScreen('chat-input', 'PromptSelector');
 }
