@@ -7,7 +7,7 @@ const styles = window.styles.ChatInput;
 const { useState, useEffect } = React;
 const { createPortal } = ReactDOM;
 
-export const PromptSelector = ({onChat}) => {
+export const PromptSelector = ({onChat, value, setValue}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [level, setLevel] = useState('intermediate');
   const [type, setType] = useState('single-choice');
@@ -33,6 +33,12 @@ export const PromptSelector = ({onChat}) => {
 
   const revealAnswer = () => {
     onChat({ type: 'text', value: `Reveal the answer and explain why.` });
+  }
+
+  const sendAnswer = () => {
+    if (value === '') return;
+    onChat({ type: 'text', value: `My answer is: ${value}\nCheck if my answer is correct and explain why.` });
+    setValue('');
   }
 
   return (
@@ -67,6 +73,8 @@ export const PromptSelector = ({onChat}) => {
           <button onClick={sendExplainWhy}>Explain why</button>
 
           <button onClick={revealAnswer}>Reveal answer</button>
+
+          <button onClick={sendAnswer}>Send answer</button>
 
         </div>
       }
