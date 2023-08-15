@@ -7,7 +7,7 @@ const styles = window.styles.ChatInput;
 const { useState, useEffect } = React;
 const { createPortal } = ReactDOM;
 
-export const PromptSelector = () => {
+export const PromptSelector = ({onChat}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [level, setLevel] = useState('intermediate');
   const [type, setType] = useState('single-choice');
@@ -19,16 +19,20 @@ export const PromptSelector = () => {
   }
 
   const sendPrompt = () => {
-    // window.onChat({ type: 'text', value: `Make an intermediate-level English grammar single-choice question. Don't show me the answer immediately.` });
-    // window.onChat({ type: 'text', value: `Make an intermediate-level English grammar single-choice question. Just write the question as is, don't change anything, don't speak anything else!` });
-    window.onChat({ type: 'text', value: `Make an ${level}-level English grammar ${type} question. Just write the question, don't speak anything else.` });
-    // window.onChat({ type: 'text', value: `Make an intermediate-level English Fill-In-The-Blank question. Just write the question, don't speak anything else.` });
-    // window.onChat({ type: 'text', value: `Explain why the answer is correct or not.` });
-    // window.onChat({ type: 'text', value: `Explain why.` });
+    // onChat({ type: 'text', value: `Make an intermediate-level English grammar single-choice question. Don't show me the answer immediately.` });
+    // onChat({ type: 'text', value: `Make an intermediate-level English grammar single-choice question. Just write the question as is, don't change anything, don't speak anything else!` });
+    onChat({ type: 'text', value: `Make an ${level}-level English grammar ${type} question. Just write the question, don't speak anything else.` });
+    // onChat({ type: 'text', value: `Make an intermediate-level English Fill-In-The-Blank question. Just write the question, don't speak anything else.` });
+    // onChat({ type: 'text', value: `Explain why the answer is correct or not.` });
+    // onChat({ type: 'text', value: `Explain why.` });
   }
 
   const sendExplainWhy = () => {
-    window.onChat({ type: 'text', value: `Explain why.` });
+    onChat({ type: 'text', value: `Explain why.` });
+  }
+
+  const revealAnswer = () => {
+    onChat({ type: 'text', value: `Reveal the answer and explain why.` });
   }
 
   return (
@@ -61,6 +65,8 @@ export const PromptSelector = () => {
           <button onClick={sendPrompt}>Send</button>
 
           <button onClick={sendExplainWhy}>Explain why</button>
+
+          <button onClick={revealAnswer}>Reveal answer</button>
 
         </div>
       }
