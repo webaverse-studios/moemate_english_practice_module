@@ -19,14 +19,22 @@ function _handleCreateQuestionSkill(event) {
 }
 
 function _handleCheckAnswerSkill(event) {
+    // debugger
+    console.log('------  _handleCheckAnswerSkill(event):', event)
     const answer = lastQuestionNAnswer.split('------')[1];
     setTimeout(() => {
-        window.hooks.emit("hack_delay", `Wrint down the answer and explanations: {${answer}}. Just write the answer and explanations in between \`{}\` as is, don't change anything, don't speak anything else!`);
+        window.hooks.emit("hack_delay", `Write down the answer and explanations: {${answer}}. Just write the answer and explanations in between \`{}\` as is but don't include \`{}\`, don't change anything, don't speak anything else!`);
     }, 100);
 }
+
+function _handleSetPrompts(model, _type) {
+    const answer = lastQuestionNAnswer.split('------')[1];
+    window.models.ApplyContextObject(model, {answer})
+  }
 
 export function init() {
     window.hooks.on('english_practice:handle_create_question_skill', _handleCreateQuestionSkill)
     window.hooks.on('english_practice:handle_check_answer_skill', _handleCheckAnswerSkill)
+    window.hooks.on("set_prompts", ({model, type}) => _handleSetPrompts(model, type));
     window.components.AddComponentToScreen('chat-input', 'PromptSelector');
 }
