@@ -4,17 +4,14 @@ let lastQuestionNAnswer = '';
 async function _handleCreateQuestionSkill(event) {
 
     const context = {
-        messages: '\n\nHuman:hello\n\nAssistant:',
-        // messages: 'hello',
+        messages: `\n\nHuman:User's answer is C. Extract correct answer from following text:\nThe correct answer is B) walked. This is the correct answer because the sentence is describing an action that took place in the past (yesterday) and is completed, so the simple past tense is needed.\nA) will walk is incorrect because it is the future tense, referring to an action that will take place in the future.\nC) had walked is the past perfect tense, used to describe an action that was completed before another past action. It does not fit here.\nD) have walked is the present perfect tense, used to describe an action that started in the past but continues to or impacts the present. It does not fit the timeframe of the sentence.\nThe simple past tense \"walked\" is the only option that properly conveys that the action took place entirely in the past.\nThen check if user's answer is correct or wrong, only reply correct or wrong, don't say anything else.\n\nAssistant:`,
     }
     const model = window.models.CreateModel('english_practice:check_answer')
     window.models.ApplyContextObject(model, context);
     const response = await window.models.CallModel(model);
+    console.log(response.completion.trim())
     debugger
     return;
-    // const translatedText = response?.result?.trans_result[0]?.dst;
-    // window.models.DestroyModel(model);
-    // return translatedText;
 
     lastQuestionNAnswer = event.value;
     const question = lastQuestionNAnswer.split('------')[0];
@@ -23,10 +20,12 @@ async function _handleCreateQuestionSkill(event) {
     }, 100);
 }
 
-function _handleCheckAnswerSkill(event) {
+async function _handleCheckAnswerSkill(event) {
     // debugger
     console.log('------  _handleCheckAnswerSkill(event):', event)
+    
     window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: event.value, timestamp: Date.now(), alt: 'alt'});
+
     const answer = lastQuestionNAnswer.split('------')[1];
     setTimeout(() => {
         window.hooks.emit("hack_delay", `Write down the answer and explanations: {${answer}}. Just write the answer and explanations in between \`{}\` as is but don't include \`{}\`, don't change anything, don't speak anything else!`);
