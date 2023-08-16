@@ -21,6 +21,7 @@ function _handleCreateQuestionSkill(event) {
 function _handleCheckAnswerSkill(event) {
     // debugger
     console.log('------  _handleCheckAnswerSkill(event):', event)
+    window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: event.value, timestamp: Date.now(), alt: 'alt'});
     const answer = lastQuestionNAnswer.split('------')[1];
     setTimeout(() => {
         window.hooks.emit("hack_delay", `Write down the answer and explanations: {${answer}}. Just write the answer and explanations in between \`{}\` as is but don't include \`{}\`, don't change anything, don't speak anything else!`);
