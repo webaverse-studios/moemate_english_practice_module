@@ -1,7 +1,7 @@
 
 function _handleCreateQuestionSkill(event) {
     console.log(`_handleCreateQuestionSkill(event):`, event);
-    // debugger
+    debugger
     // window.companion.SendMessage({ type: "TEXT", user: event.name, value: event.value, timestamp: Date.now(), alt: responseObj.description});
     // window.companion.SendMessage({ type: "TEXT", user: event.name, value: event.value, timestamp: Date.now(), alt: 'alt'});
     // setTimeout(() => {
@@ -9,7 +9,10 @@ function _handleCreateQuestionSkill(event) {
     // }, 100);
 
     const question = event.value.split('------')[0];
-    window.companion.SendMessage({ type: "TEXT", user: event.name, value: question, timestamp: Date.now(), alt: 'alt'});
+    // window.companion.SendMessage({ type: "TEXT", user: event.name, value: question, timestamp: Date.now(), alt: 'alt'});
+    setTimeout(() => {
+        window.hooks.emit("hack_delay", `You created this question {${question}}, don't answer the question, just write the question and (keep the blank!) choices as is, don't change anything, don't speak anything else!`);
+    }, 100);
 }
 
 function _handleCheckAnswerSkill(event) {
