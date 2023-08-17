@@ -55,7 +55,12 @@ Assistant:` // Let AI also reveal the answer and explain, to let it create more 
     // lastQuestionNAnswer = response.completion;
     // const question = lastQuestionNAnswer.split('------')[0];
 
-    window.hooks.emit('moemate_core:handle_skill_text', {name: event.name, value: question});
+    // const lines = window.util.SplitSentences(question);
+    const lines = question.split('\n');
+    lines.forEach(line => {
+        if (line.trim() === '') return;
+        window.hooks.emit('moemate_core:handle_skill_text', {name: event.name, value: line});
+    })
 
     // setTimeout(() => {
     //     window.hooks.emit("hack_delay", `You created this question {${question}}, don't answer the question, just write the question (keep the blank!) and choices as is, don't change anything, don't speak anything else!`);
@@ -116,7 +121,12 @@ Assistant:`,
     const response = await window.models.CallModel(model);
     console.log('------  _handleCheckAnswerSkill response:', response.completion)
     // window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: response.completion.trim(), timestamp: Date.now(), alt: 'alt'});
-    window.hooks.emit('moemate_core:handle_skill_text', {name: event.name, value: response.completion});
+
+    const lines = response.completion.split('\n');
+    lines.forEach(line => {
+        if (line.trim() === '') return;
+        window.hooks.emit('moemate_core:handle_skill_text', {name: event.name, value: line});
+    })
 
     const isStop = true;
     return isStop;
