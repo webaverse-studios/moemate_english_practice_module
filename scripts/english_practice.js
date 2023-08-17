@@ -41,6 +41,7 @@ async function _handleCheckAnswerSkill(event) {
     window.models.ApplyContextObject(model, context);
     const response = await window.models.CallModel(model);
     window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: response.completion.trim(), timestamp: Date.now(), alt: 'alt'});
+    window.hooks.emit('moemate_core:handle_skill_text', {name: event.name, value: answer});
     
     // setTimeout(() => {
     //     window.hooks.emit("hack_delay", `Write down the answer and explanations: {${answer}}. Just write the answer and explanations in between \`{}\` as is but don't include \`{}\`, don't change anything, don't speak anything else!`);
