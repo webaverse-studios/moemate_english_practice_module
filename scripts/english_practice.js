@@ -9,7 +9,18 @@ async function _handleCreateQuestionSkill(event) {
     const context = {
         // messages: `\n\nHuman:User's answer is C. Extract correct answer from following text:\nThe correct answer is B) walked. This is the correct answer because the sentence is describing an action that took place in the past (yesterday) and is completed, so the simple past tense is needed.\nA) will walk is incorrect because it is the future tense, referring to an action that will take place in the future.\nC) had walked is the past perfect tense, used to describe an action that was completed before another past action. It does not fit here.\nD) have walked is the present perfect tense, used to describe an action that started in the past but continues to or impacts the present. It does not fit the timeframe of the sentence.\nThe simple past tense \"walked\" is the only option that properly conveys that the action took place entirely in the past.\nThen check if user's answer is correct or wrong, only reply correct or wrong, don't say anything else.\n\nAssistant:`,
         // messages: `\n\nHuman:You are now role-playing as a senior English teacher.\nCreate an English grammar verb tense multiple choice fill-in-the-blank question.\nReveal the correct answer after the question, explain why it is correct.\nAnd explain why other choices are wrong.\nAnd don't forget to add '\\n------\\n' between the question and the explanations.\nExample:\nYesterday I _____ to the store when it started raining.\n A) will walk\n B) walked\n C) had walked\n D) have walked\n------\nThe correct answer is B) walked. This is the correct answer because the sentence is describing an action that took place in the past (yesterday) and is completed, so the simple past tense is needed.\nA) will walk is incorrect because it is the future tense, referring to an action that will take place in the future.\nC) had walked is the past perfect tense, used to describe an action that was completed before another past action. It does not fit here.\nD) have walked is the present perfect tense, used to describe an action that started in the past but continues to or impacts the present. It does not fit the timeframe of the sentence.\nThe simple past tense \"walked\" is the only option that properly conveys that the action took place entirely in the past.\n\nAssistant:`
-        messages: `\n\nHuman:You are now role-playing as a senior English teacher.\nCreate an English grammar verb tense multiple choice fill-in-the-blank question.\nDon't reveal the answer.Only write the question, don't speak anything else.\n\nExample:\nYesterday I _____ to the store when it started raining.\n A) will walk\n B) walked\n C) had walked\n D) have walked\n\nAssistant:`
+        messages: `\n\nHuman:
+### You are now role-playing as a senior English teacher.Create an English grammar verb tense multiple choice fill-in-the-blank question. ( Random seed: ${Math.random()} )
+Don't reveal the answer.Only write the question, don't speak anything else.
+
+### Example:
+Yesterday I _____ to the store when it started raining.
+A) will walk
+B) walked
+C) had walked
+D) have walked
+
+Assistant:`
     }
     const model = window.models.CreateModel('english_practice:check_answer')
     window.models.ApplyContextObject(model, context);
