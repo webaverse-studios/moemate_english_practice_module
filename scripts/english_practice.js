@@ -144,5 +144,5 @@ export function init() {
     window.hooks.on('english_practice:handle_create_question_skill', _handleCreateQuestionSkill)
     window.hooks.on('english_practice:handle_check_answer_skill', _handleCheckAnswerSkill)
     // window.hooks.on("set_prompts", ({model, type}) => _handleSetPrompts(model, type));
-    window.components.AddComponentToScreen('chat-input', 'PromptSelector');
+    // window.components.AddComponentToScreen('chat-input', 'PromptSelector');
 }

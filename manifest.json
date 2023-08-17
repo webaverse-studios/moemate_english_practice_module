@@ -23,8 +23,5 @@
   ],
   "scripts": [
     "scripts/english_practice.js"
-  ],
-  "components": [
-    "components/PromptSelector.jsx"
   ]
 }
