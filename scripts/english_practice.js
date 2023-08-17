@@ -22,12 +22,14 @@ async function _handleCreateQuestionSkill(event) {
 
 // Assistant:`,
         messages: `\n\nHuman:
-### You are now role-playing as a senior English teacher. Create an English grammar verb tense multiple choice fill-in-the-blank question. ( Random seed: ${Math.random()} )
+### You are now role-playing as a senior English teacher. Create an English grammar verb tense multiple choice fill-in-the-blank question, create different question based on the random seed: ${Math.random()}.
 Reveal the correct answer after the question, explain why it is correct.
 And explain why other choices are wrong.
-And don't forget to add '\\n------\\n' between the question and the explanations.
+And don't forget to add '\\n------\\n' before the question, and between the question and the explanations.
 
 ###Example:
+Here is an English grammar verb tense multiple choice fill-in-the-blank question:
+------
 Yesterday I _____ to the store when it started raining.
 A) will walk
 B) walked
@@ -50,7 +52,7 @@ Assistant:` // Let AI also reveal the answer and explain, to let it create more 
     // debugger
     // return;
 
-    const question = response.completion.split('------')[0];
+    const question = response.completion.split('------')[1];
     lastQuestion = question;
     // lastQuestionNAnswer = response.completion;
     // const question = lastQuestionNAnswer.split('------')[0];
