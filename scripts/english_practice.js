@@ -23,6 +23,9 @@ async function _handleCreateQuestionSkill(event) {
     // setTimeout(() => {
     //     window.hooks.emit("hack_delay", `You created this question {${question}}, don't answer the question, just write the question (keep the blank!) and choices as is, don't change anything, don't speak anything else!`);
     // }, 100);
+
+    const isStop = true;
+    return isStop;
 }
 
 async function _handleCheckAnswerSkill(event) {
@@ -39,9 +42,12 @@ async function _handleCheckAnswerSkill(event) {
     const response = await window.models.CallModel(model);
     window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: response.completion.trim(), timestamp: Date.now(), alt: 'alt'});
     
-    setTimeout(() => {
-        window.hooks.emit("hack_delay", `Write down the answer and explanations: {${answer}}. Just write the answer and explanations in between \`{}\` as is but don't include \`{}\`, don't change anything, don't speak anything else!`);
-    }, 100);
+    // setTimeout(() => {
+    //     window.hooks.emit("hack_delay", `Write down the answer and explanations: {${answer}}. Just write the answer and explanations in between \`{}\` as is but don't include \`{}\`, don't change anything, don't speak anything else!`);
+    // }, 100);
+
+    const isStop = true;
+    return isStop;
 }
 
 function _handleSetPrompts(model, _type) {
