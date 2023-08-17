@@ -22,10 +22,11 @@ async function _handleCreateQuestionSkill(event) {
 
 // Assistant:`,
         messages: `\n\nHuman:
-### You are now role-playing as a senior English teacher. Create an English grammar verb tense multiple choice fill-in-the-blank question, create different question based on the random seed: ${Math.random()}.
+### Create an English grammar tenses multiple choice fill-in-the-blank question.
 Reveal the correct answer after the question, explain why it is correct.
-And explain why other choices are wrong.
-And don't forget to add '\\n------\\n' before the question, and between the question and the explanations.
+Explain why other choices are wrong.
+Explain why you create this question.
+Add '\\n------\\n' before the question, and between the question and the explanations.
 
 ###Example:
 Here is an English grammar verb tense multiple choice fill-in-the-blank question:
