@@ -13,6 +13,8 @@ async function _handleCreateQuestionSkill(event) {
         pointAndSpace = 'tenses';
     }
 
+    const level = event.level ?? 'intermediate';
+
     const context = {
         // messages: `\n\nHuman:User's answer is C. Extract correct answer from following text:\nThe correct answer is B) walked. This is the correct answer because the sentence is describing an action that took place in the past (yesterday) and is completed, so the simple past tense is needed.\nA) will walk is incorrect because it is the future tense, referring to an action that will take place in the future.\nC) had walked is the past perfect tense, used to describe an action that was completed before another past action. It does not fit here.\nD) have walked is the present perfect tense, used to describe an action that started in the past but continues to or impacts the present. It does not fit the timeframe of the sentence.\nThe simple past tense \"walked\" is the only option that properly conveys that the action took place entirely in the past.\nThen check if user's answer is correct or wrong, only reply correct or wrong, don't say anything else.\n\nAssistant:`,
 
@@ -58,7 +60,7 @@ async function _handleCreateQuestionSkill(event) {
 // Let AI also reveal the answer and explain, to let it create more correct questions. Later may can also use this answer to double check.
 
         messages: `\n\nHuman:
-### Create an English grammar ${pointAndSpace}multiple choice fill-in-the-blank question.
+### Create an English grammar ${level}-level ${pointAndSpace}multiple choice fill-in-the-blank question.
 Reveal the correct answer after the question, explain why it is correct.
 Explain why other choices are wrong.
 Explain why you create this question.
@@ -75,7 +77,7 @@ Assistant:`
     window.models.ApplyContextObject(model, context);
     const response = await window.models.CallModel(model);
     console.log('------ _handleCreateQuestionSkill prompt:', context.messages)
-    console.log('------ _handleCreateQuestionSkill response:', response)
+    console.log('------ _handleCreateQuestionSkill response:', response.completion)
     // console.log(response.completion.trim())
     // debugger
     // return;

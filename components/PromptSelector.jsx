@@ -30,7 +30,7 @@ export const PromptSelector = ({onChat, value, setValue}) => {
     window.hooks.emitSync("character:reset");
     window.hooks.emitSync("character:processing");
     const name = window.companion.GetCharacterAttribute('name');
-    await window.hooks.emit('english_practice:handle_create_question_skill', {name, point});
+    await window.hooks.emit('english_practice:handle_create_question_skill', {name, level, point});
     window.hooks.emitSync("character:standby"); // todo: not correct timing
   }
 
@@ -53,7 +53,7 @@ export const PromptSelector = ({onChat, value, setValue}) => {
       {isOpen &&
         <div className={styles.emojiPickerWrap} style={{color:'white'}}>
           
-          {/* <select
+          <select
             value={level}
             onChange={(e) => {
               setLevel(e.target.value);
@@ -62,7 +62,7 @@ export const PromptSelector = ({onChat, value, setValue}) => {
             <option key={"elementary"} value={"elementary"}>elementary</option>
             <option key={"intermediate"} value={"intermediate"}>intermediate</option>
             <option key={"advanced"} value={"advanced"}>advanced</option>
-          </select> */}
+          </select>
 
           {/* <select
             value={type}
@@ -84,6 +84,7 @@ export const PromptSelector = ({onChat, value, setValue}) => {
             <option key={"any"} value={"any"}>any</option>
             <option key={"tenses"} value={"tenses"}>tenses</option>
             <option key={"preposition"} value={"preposition"}>preposition</option>
+            <option key={"subordinate clause"} value={"subordinate clause"}>subordinate clause</option>
           </select>
 
           <button onClick={sendPrompt}>Send</button>
