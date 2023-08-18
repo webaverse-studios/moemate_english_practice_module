@@ -31,7 +31,7 @@ export const PromptSelector = ({onChat, value, setValue}) => {
     window.hooks.emitSync("character:processing");
     const name = window.companion.GetCharacterAttribute('name');
     await window.hooks.emit('english_practice:handle_create_question_skill', {name, point});
-    window.hooks.emitSync("character:standby");
+    window.hooks.emitSync("character:standby"); // todo: not correct timing
   }
 
   const sendExplainWhy = () => {
