@@ -60,7 +60,7 @@ async function _handleCreateQuestionSkill(event) {
 // Let AI also reveal the answer and explain, to let it create more correct questions. Later may can also use this answer to double check.
 
         messages: `\n\nHuman:
-### Create an English grammar ${pointAndSpace}multiple choice fill-in-the-blank question.
+### Create an English grammar ${pointAndSpace}multiple choice fill-in-the-blank question (Only one choice is correct, other choices are wrong. Provide enough informantion in the question, to prevent ambiguous choices).
 Reveal the correct answer after the question, explain why it is correct.
 Explain why other choices are wrong.
 Explain why you create this question.
