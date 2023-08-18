@@ -59,18 +59,41 @@ async function _handleCreateQuestionSkill(event) {
 // Assistant:`
 // Let AI also reveal the answer and explain, to let it create more correct questions. Later may can also use this answer to double check.
 
+//         messages: `\n\nHuman:
+// ### Create an English grammar ${pointAndSpace}multiple choice fill-in-the-blank question (Only one choice is correct, other choices are wrong. Provide enough informantion in the question, to prevent ambiguous choices).
+// Reveal the correct answer after the question, explain why it is correct.
+// Explain why other choices are wrong.
+// Explain why you create this question.
+// Add '------' before the question.
+// Add '------' after the choices of the question, before revealing the answer and explaining.
+
+// Assistant:`
+// // Let AI also reveal the answer and explain, to let it create more correct questions. Later may can also use this answer to double check.
+// // Don't provide example to prevent AI almost always create questions start with something like "By the time ...".
+// // Don't require hard level to prevent create questions with so many blanks.
+
         messages: `\n\nHuman:
 ### Create an English grammar ${pointAndSpace}multiple choice fill-in-the-blank question (Only one choice is correct, other choices are wrong. Provide enough informantion in the question, to prevent ambiguous choices).
-Reveal the correct answer after the question, explain why it is correct.
-Explain why other choices are wrong.
-Explain why you create this question.
-Add '------' before the question.
-Add '------' after the choices of the question, before revealing the answer and explaining.
+Reveal every choices if correct, and explain why they are correct or wrong.
+
+Reply in JSON format for easy parsing.
+Add '------' before and after the JSON.
+### Example:
+Here is an English grammar verb tense multiple choice fill-in-the-blank question:
+------
+{
+    "question": "Yesterday I _____ to the store when it started raining.",
+    "choices": [
+        {"correct": true, text: "...", "explain": "..."},
+        {"correct": false, text: "...", "explain": "..."},
+        {"correct": false, text: "...", "explain": "..."},
+        {"correct": false, text: "...", "explain": "..."},
+    ]
+
+}
+------
 
 Assistant:`
-// Let AI also reveal the answer and explain, to let it create more correct questions. Later may can also use this answer to double check.
-// Don't provide example to prevent AI almost always create questions start with something like "By the time ...".
-// Don't require hard level to prevent create questions with so many blanks.
 
     }
     console.log('------ _handleCreateQuestionSkill prompt before await:', context.messages)
@@ -79,9 +102,10 @@ Assistant:`
     const response = await window.models.CallModel(model);
     console.log('------ _handleCreateQuestionSkill prompt:', context.messages)
     console.log('------ _handleCreateQuestionSkill response:', response.completion)
+    console.log(JSON.parse(response.completion.split('------')[1]))
     // console.log(response.completion.trim())
     // debugger
-    // return;
+    return true;
 
     const question = response.completion.split('------')[1];
     lastQuestion = question;
