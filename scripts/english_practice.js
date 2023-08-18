@@ -60,7 +60,7 @@ async function _handleCreateQuestionSkill(event) {
 // Let AI also reveal the answer and explain, to let it create more correct questions. Later may can also use this answer to double check.
 
         messages: `\n\nHuman:
-### Create an English grammar ${level}-level ${pointAndSpace}multiple choice fill-in-the-blank question.
+### Create an English grammar ${pointAndSpace}multiple choice fill-in-the-blank question.
 Reveal the correct answer after the question, explain why it is correct.
 Explain why other choices are wrong.
 Explain why you create this question.
@@ -70,6 +70,7 @@ Add '------' after the choices of the question, before revealing the answer and 
 Assistant:`
 // Let AI also reveal the answer and explain, to let it create more correct questions. Later may can also use this answer to double check.
 // Don't provide example to prevent AI almost always create questions start with something like "By the time ...".
+// Don't require hard level to prevent create questions with so many blanks.
 
     }
     console.log('------ _handleCreateQuestionSkill prompt before await:', context.messages)

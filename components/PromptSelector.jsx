@@ -53,7 +53,7 @@ export const PromptSelector = ({onChat, value, setValue}) => {
       {isOpen &&
         <div className={styles.emojiPickerWrap} style={{color:'white'}}>
           
-          <select
+          {/* <select
             value={level}
             onChange={(e) => {
               setLevel(e.target.value);
@@ -62,7 +62,7 @@ export const PromptSelector = ({onChat, value, setValue}) => {
             <option key={"elementary"} value={"elementary"}>elementary</option>
             <option key={"intermediate"} value={"intermediate"}>intermediate</option>
             <option key={"advanced"} value={"advanced"}>advanced</option>
-          </select>
+          </select> */}
 
           {/* <select
             value={type}
