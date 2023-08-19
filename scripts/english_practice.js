@@ -11,8 +11,8 @@ function firstLetterToLower(str) {
 }
 
 const interestTags = [ // increase the variety of questions
-    "Anything", 
-    "Foodie", 
+    "Anything",
+    "Foodie",
     "Sports",
     "Travel",
     "Photography",
@@ -25,7 +25,7 @@ const interestTags = [ // increase the variety of questions
     "Beauty",
     "Health & Fitness",
     "Technology",
-    "Business", 
+    "Business",
     "Finance",
     "Home Decor",
     "Reading",
@@ -40,8 +40,8 @@ const interestTags = [ // increase the variety of questions
     "Parenting",
     "Volunteering",
     "Wine",
-    "Environment"  
-  ];
+    "Environment",
+];
 
 async function _handleCreateQuestionSkill(event) {
 
@@ -57,7 +57,7 @@ async function _handleCreateQuestionSkill(event) {
     const context = {
 
         messages: `\n\nHuman:
-### Background: I'm interested in ${interestTags[Math.floor(Math.random()*interestTags.length)]}.
+### Background: I'm interested in ${interestTags[Math.floor(Math.random() * interestTags.length)]}.
 ### Create an English grammar ${pointAndSpace}multiple-choice fill-in-the-blank question. (Provide enough information in the question, to prevent ambiguous choices. Only one choice is correct, all other choices are wrong. Every choice has to be different.).
 Reveal whether each choice is correct or wrong, and explain why they are correct or wrong.
 Reply in JSON format for easy parsing.
@@ -69,7 +69,7 @@ Use "wrong" instead of "incorrect" all the time.
 Here is an English grammar verb tense multiple choice fill-in-the-blank question:
 ------
 {
-    "question": "Yesterday I _____ to the store when it started raining.",
+    "question": "...",
     "choices": [
         {"letter": "A", "correct": true, text: "...", "explain": "The correct answer is A) because ..."},
         {"letter": "B", "correct": false, text: "...", "explain": "B) is wrong because ..."},
@@ -134,7 +134,7 @@ Assistant:`,
     const response = await window.models.CallModel(model);
     console.log('------ _handleCheckAnswerSkill prompt:', context.messages)
     console.log('------  _handleCheckAnswerSkill response:', response.completion)
-    window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: 'Your answer is ' + response.completion.trim(), timestamp: Date.now(), alt: 'alt' });
+    window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: `Your answer is ${response.completion.trim()}.`, timestamp: Date.now(), alt: 'alt' });
     // return;
 
     // const correctText = `The correct answer is ${correctChoiceLetter}) because ${firstLetterToLower(correctChoice.explain)}`;
