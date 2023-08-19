@@ -10,7 +10,42 @@ function firstLetterToLower(str) {
     return str.charAt(0).toLowerCase() + str.slice(1);
 }
 
+const interestTags = [ // increase the variety of questions
+    "Anything", 
+    "Foodie", 
+    "Sports",
+    "Travel",
+    "Photography",
+    "Hiking",
+    "Yoga",
+    "Art",
+    "Music",
+    "Gaming",
+    "Fashion",
+    "Beauty",
+    "Health & Fitness",
+    "Technology",
+    "Business", 
+    "Finance",
+    "Home Decor",
+    "Reading",
+    "Cooking",
+    "Pets",
+    "Gardening",
+    "Movies",
+    "Crafts",
+    "Blogging",
+    "Cars",
+    "Outdoors",
+    "Parenting",
+    "Volunteering",
+    "Wine",
+    "Environment"  
+  ];
+
 async function _handleCreateQuestionSkill(event) {
+
+    window.companion.SendMessage({ type: "CREATE_QUESTION", user: event.name, value: 'Creating English practice question.', timestamp: Date.now(), alt: 'alt' });
 
     let pointAndSpace = '';
     if (event.point) {
@@ -22,7 +57,8 @@ async function _handleCreateQuestionSkill(event) {
     const context = {
 
         messages: `\n\nHuman:
-### Create an English grammar ${pointAndSpace}multiple-choice fill-in-the-blank question (Only one choice is correct, all other choices are wrong. Provide enough information in the question, to prevent ambiguous choices).
+### Background: I'm interested in ${interestTags[Math.floor(Math.random()*interestTags.length)]}.
+### Create an English grammar ${pointAndSpace}multiple-choice fill-in-the-blank question. (Provide enough information in the question, to prevent ambiguous choices. Only one choice is correct, all other choices are wrong. Every choice has to be different.).
 Reveal whether each choice is correct or wrong, and explain why they are correct or wrong.
 Reply in JSON format for easy parsing.
 Add '------' around the JSON.
@@ -58,15 +94,15 @@ Assistant:`
     lastQuestionObj = JSON.parse(responseArray[1])
     console.log('------ lastQuestionObj:', lastQuestionObj)
 
-    const hereIsAQuestion = responseArray[0].trim();
-    if (hereIsAQuestion) window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: hereIsAQuestion });
+    // const hereIsAQuestion = responseArray[0].trim();
+    // if (hereIsAQuestion) window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: hereIsAQuestion });
     // lastQuestionText = '';
     const questionText = lastQuestionObj.question
     // lastQuestionText += questionText;
     window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: questionText });
     lastQuestionObj.choices.forEach((choice, i) => {
         // const choiceText = `${indexToLetter(i)}) ${choice.text}`;
-        const choiceText = `${choice.letter} ${choice.text}`;
+        const choiceText = `${choice.letter}) ${choice.text}`;
         // lastQuestionText += '\n' + choiceText;
         window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: choiceText });
     })
