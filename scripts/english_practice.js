@@ -58,7 +58,7 @@ async function _handleCreateQuestionSkill(event) {
 
         messages: `\n\nHuman:
 ### Background: I'm interested in ${interestTags[Math.floor(Math.random() * interestTags.length)]}, I want to improve my English grammar.
-### Create an English GRAMMAR ${pointAndSpace}multiple-choice fill-in-the-blank question. (Provide enough information in the question, to prevent ambiguous choices. Only one choice is correct, all other choices are wrong. Don't create same choices.).
+### You are now role-playing as a senior English teacher, create an English GRAMMAR ${pointAndSpace}multiple-choice fill-in-the-blank question. (Provide enough information in the question, to prevent ambiguous choices. Only one choice is correct, all other choices are wrong. Don't create same choices.).
 Reveal whether each choice is correct or wrong, and explain why they are correct or wrong.
 Reply in JSON format for easy parsing.
 Add '------' around the JSON.
