@@ -1,23 +1,23 @@
 // questions from https://www.englishclub.com/esl-quizzes/grammar/
 
 export const questions = [
-  {
-    "question": "Phrases are grammatical units that consist of",
-    "choices": [
-      { "correct": true, "text": "one or more words" },
-      { "correct": false, "text": "more than one word" },
-    ],
-    category: "Phrases Quiz",
-  },
-  {
-    "question": "A noun phrase with more than one word can consist of a noun and words that",
-    "choices": [
-      { "correct": false, "text": "replace the noun" },
-      { "correct": true, "text": "qualify the noun" },
-    ],
-    category: "Phrases Quiz",
-    needExample: true,
-  },
+  // {
+  //   "question": "Phrases are grammatical units that consist of",
+  //   "choices": [
+  //     { "correct": true, "text": "one or more words" },
+  //     { "correct": false, "text": "more than one word" },
+  //   ],
+  //   category: "Phrases Quiz",
+  // },
+  // {
+  //   "question": "A noun phrase with more than one word can consist of a noun and words that",
+  //   "choices": [
+  //     { "correct": false, "text": "replace the noun" },
+  //     { "correct": true, "text": "qualify the noun" },
+  //   ],
+  //   category: "Phrases Quiz",
+  //   needExample: true,
+  // },
 
   // {
   //   "question": "We like ________ our grandmother on Sundays.",
@@ -110,115 +110,185 @@ export const questions = [
   //   category: "Infinitive or -ing Quiz",
   // },
 
+  // {
+  //   "question": "Can you swim?",
+  //   "choices": [
+  //     { "correct": false, "text": "In a pool"},
+  //     { "correct": true, "text": "Yes, I can"},
+  //     { "correct": false, "text": "Very good"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
+
+  // {
+  //   "question": "Did he go to work or to school?",
+  //   "choices": [
+  //     { "correct": true, "text": "To work"},
+  //     { "correct": false, "text": "No, he doesn't"},
+  //     { "correct": false, "text": "At 3:00 PM"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
+
+  // {
+  //   "question": "Has your class finished?",
+  //   "choices": [
+  //     { "correct": true, "text": "Yes, it has"},
+  //     { "correct": false, "text": "In five minutes"},
+  //     { "correct": false, "text": "It's English"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
+
+  // {
+  //   "question": "Where is my pen?",
+  //   "choices": [
+  //     { "correct": false, "text": "Because it's lost"},
+  //     { "correct": true, "text": "On the table"},
+  //     { "correct": false, "text": "No, you didn't"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
+
+  // {
+  //   "question": "Who did you visit?",
+  //   "choices": [
+  //     { "correct": false, "text": "I visit my mother"},
+  //     { "correct": false, "text": "Yes, I did"},
+  //     { "correct": true, "text": "I visited Judy"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
+
+  // {
+  //   "question": "Shall we go to your place or mine?",
+  //   "choices": [
+  //     { "correct": true, "text": "My place"},
+  //     { "correct": false, "text": "It is yours"},
+  //     { "correct": false, "text": "Yes, we shall"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
+
+  // {
+  //   "question": "When will Lucy arrive?",
+  //   "choices": [
+  //     { "correct": true, "text": "At 7 PM"},
+  //     { "correct": false, "text": "No, she won't"},
+  //     { "correct": false, "text": "From France"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
+
+  // {
+  //   "question": "Who called here so late?",
+  //   "choices": [
+  //     { "correct": false, "text": "It's midnight"},
+  //     { "correct": true, "text": "It was Ryan"},
+  //     { "correct": false, "text": "Yes, I called"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
+
+  // {
+  //   "question": "Do you want to watch a movie?",
+  //   "choices": [
+  //     { "correct": false, "text": "At the cinema"},
+  //     { "correct": false, "text": "Yes, I watched it"},
+  //     { "correct": true, "text": "No, I don't"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
+
+  // {
+  //   "question": "Have you done the laundry?",
+  //   "choices": [
+  //     { "correct": false, "text": "Yes, I do"},
+  //     { "correct": false, "text": "On Wednesdays"},
+  //     { "correct": true, "text": "No, I haven't"},
+  //   ],
+  //   category: "Questions Quiz",
+  // },
 
   {
-    "question": "Can you swim?",
+    "question": "It is essential that she _____ at the meeting.",
     "choices": [
-      { "correct": false, "text": "In a pool"},
-      { "correct": true, "text": "Yes, I can"},
-      { "correct": false, "text": "Very good"},
+      { "correct": true, "text": "be"},
+      { "correct": false, "text": "is"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
-
   {
-    "question": "Did he go to work or to school?",
+    "question": "If I _____ you I would call her tonight.",
     "choices": [
-      { "correct": true, "text": "To work"},
-      { "correct": false, "text": "No, he doesn't"},
-      { "correct": false, "text": "At 3:00 PM"},
+      { "correct": false, "text": "was"},
+      { "correct": true, "text": "were"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
-
   {
-    "question": "Has your class finished?",
+    "question": "It is necessary that every student _____ a uniform.",
     "choices": [
-      { "correct": true, "text": "Yes, it has"},
-      { "correct": false, "text": "In five minutes"},
-      { "correct": false, "text": "It's English"},
+      { "correct": true, "text": "wear"},
+      { "correct": false, "text": "wears"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
-
   {
-    "question": "Where is my pen?",
+    "question": "I hope that he _____ his homework on time.",
     "choices": [
-      { "correct": false, "text": "Because it's lost"},
-      { "correct": true, "text": "On the table"},
-      { "correct": false, "text": "No, you didn't"},
+      { "correct": false, "text": "finish"},
+      { "correct": true, "text": "finishes"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
-
   {
-    "question": "Who did you visit?",
+    "question": "The doctors recommended that she _____ a holiday.",
     "choices": [
-      { "correct": false, "text": "I visit my mother"},
-      { "correct": false, "text": "Yes, I did"},
-      { "correct": true, "text": "I visited Judy"},
+      { "correct": true, "text": "take"},
+      { "correct": false, "text": "takes"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
-
   {
-    "question": "Shall we go to your place or mine?",
+    "question": "The boss asks that you _____ early for your first day of work.",
     "choices": [
-      { "correct": true, "text": "My place"},
-      { "correct": false, "text": "It is yours"},
-      { "correct": false, "text": "Yes, we shall"},
+      { "correct": false, "text": "are"},
+      { "correct": true, "text": "be"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
-
   {
-    "question": "When will Lucy arrive?",
+    "question": "If he _____ feeling better we would go.",
     "choices": [
-      { "correct": true, "text": "At 7 PM"},
-      { "correct": false, "text": "No, she won't"},
-      { "correct": false, "text": "From France"},
+      { "correct": true, "text": "were"},
+      { "correct": false, "text": "was"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
-
   {
-    "question": "Who called here so late?",
+    "question": "It is important that we _____ home as soon as we arrive.",
     "choices": [
-      { "correct": false, "text": "It's midnight"},
-      { "correct": true, "text": "It was Ryan"},
-      { "correct": false, "text": "Yes, I called"},
+      { "correct": true, "text": "call"},
+      { "correct": false, "text": "called"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
-
   {
-    "question": "Do you want to watch a movie?",
+    "question": "The landlord requested that John _____ out of the apartment.",
     "choices": [
-      { "correct": false, "text": "At the cinema"},
-      { "correct": false, "text": "Yes, I watched it"},
-      { "correct": true, "text": "No, I don't"},
+      { "correct": true, "text": "move"},
+      { "correct": false, "text": "moves"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
-
   {
-    "question": "Have you done the laundry?",
+    "question": "We want the windows _____ washed before Friday.",
     "choices": [
-      { "correct": false, "text": "Yes, I do"},
-      { "correct": false, "text": "On Wednesdays"},
-      { "correct": true, "text": "No, I haven't"},
+      { "correct": false, "text": "be"},
+      { "correct": true, "text": "to be"},
     ],
-    category: "Questions Quiz",
-    needExample: false,
+    category: "Subjunctive Quiz",
   },
 
   // {
