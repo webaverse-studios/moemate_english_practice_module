@@ -3,6 +3,8 @@ Gives companion the ability to `create` or `select` English practice questions a
 
 Fix https://github.com/webaverse-studios/moemate/issues/1301
 
+Need work with https://github.com/webaverse-studios/moemate/tree/vis/EnglishPracticeModulePr branch for now.
+
 ![image](https://github.com/webaverse-studios/moemate_english_practice_module/assets/10785634/a7408ae5-79c7-4134-bf24-b5ad9701fb6a)
 
 ---
