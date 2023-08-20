@@ -56,30 +56,47 @@ async function _handleCreateQuestionSkill(event) {
 
     const context = {
 
+//         messages: `\n\nHuman:
+// You are now role-playing as a senior English teacher.
+// Here is an English grammar multiple choice question in JSON format:
+// {
+//     "question": "A prepositional phrase consists of a preposition and its",
+//     "choices": [
+//         {"letter": "A", "correct": true, text: "object", "explain": "A) is correct because ..."},
+//         {"letter": "B", "correct": false, text: "subject", "explain": "B) is wrong because ..."}
+//     ],
+//     "examples": [
+//         "...",
+//         "...",
+//         "..."
+//     ]
+
+// }
+// Explain why they are correct or wrong, and fill in the "explain" property.
+// Create some examples sentence demostrating the correct answer, and fill in the "examples" property.
+// Reply also in this JSON format.
+// Add '------' around the JSON.
+// Use "wrong" instead of "incorrect" all the time.
+
+// Assistant:`
+
         messages: `\n\nHuman:
-### Background: I'm interested in ${interestTags[Math.floor(Math.random() * interestTags.length)]}, I want to improve my English grammar.
-### You are now role-playing as a senior English teacher, create an English GRAMMAR ${pointAndSpace}multiple-choice fill-in-the-blank question. (Provide enough information in the question, to prevent ambiguous choices. Only one choice is correct, all other choices are wrong. Don't create same choices.).
-Reveal whether each choice is correct or wrong, and explain why they are correct or wrong.
-Reply in JSON format for easy parsing.
-Add '------' around the JSON.
-Then explain why you chose this question.
-Use "wrong" instead of "incorrect" all the time.
-
-### Example:
-Here is an English grammar verb tense multiple choice fill-in-the-blank question:
-------
+You are now role-playing as a senior English teacher.
+Here is an English grammar multiple choice question in JSON format:
 {
-    "question": "...",
+    "question": "A prepositional phrase consists of a preposition and its",
     "choices": [
-        {"letter": "A", "correct": true, text: "...", "explain": "The correct answer is A) because ..."},
-        {"letter": "B", "correct": false, text: "...", "explain": "B) is wrong because ..."},
-        {"letter": "C", "correct": false, text: "...", "explain": "C) is wrong because ..."},
-        {"letter": "D", "correct": false, text: "...", "explain": "D) is wrong because ..."},
-    ]
-
+        {"letter": "{letter}", "correct": true, text: "object", "explain": "{letter} is correct because ..."},
+        {"letter": "{letter}", "correct": false, text: "subject", "explain": "{letter} is wrong because ..."},
+    ],
+    "example": "...",
 }
-------
-Why I chose this question.
+Create "letter"s for each choice, such as "A)", "B)", "C)", etc.
+Explain why they are correct or wrong, and fill in the "explain" property.
+Create an example FULL sentence demostrating the correct answer, and fill in the "example" property.
+Reply also in this JSON format.
+Add '------' around the JSON.
+Use "wrong" instead of "incorrect" all the time.
 
 Assistant:`
 
@@ -102,7 +119,7 @@ Assistant:`
     window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: questionText });
     lastQuestionObj.choices.forEach((choice, i) => {
         // const choiceText = `${indexToLetter(i)}) ${choice.text}`;
-        const choiceText = `${choice.letter}) ${choice.text}`;
+        const choiceText = `${choice.letter} ${choice.text}`;
         // lastQuestionText += '\n' + choiceText;
         window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: choiceText });
     })
