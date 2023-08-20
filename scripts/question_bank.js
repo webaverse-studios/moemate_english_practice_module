@@ -210,95 +210,186 @@ export const questions = [
   //   category: "Questions Quiz",
   // },
 
+  // {
+  //   "question": "It is essential that she _____ at the meeting.",
+  //   "choices": [
+  //     { "correct": true, "text": "be"},
+  //     { "correct": false, "text": "is"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+  // {
+  //   "question": "If I _____ you I would call her tonight.",
+  //   "choices": [
+  //     { "correct": false, "text": "was"},
+  //     { "correct": true, "text": "were"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+  // {
+  //   "question": "It is necessary that every student _____ a uniform.",
+  //   "choices": [
+  //     { "correct": true, "text": "wear"},
+  //     { "correct": false, "text": "wears"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+  // {
+  //   "question": "I hope that he _____ his homework on time.",
+  //   "choices": [
+  //     { "correct": false, "text": "finish"},
+  //     { "correct": true, "text": "finishes"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+  // {
+  //   "question": "The doctors recommended that she _____ a holiday.",
+  //   "choices": [
+  //     { "correct": true, "text": "take"},
+  //     { "correct": false, "text": "takes"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+  // {
+  //   "question": "The boss asks that you _____ early for your first day of work.",
+  //   "choices": [
+  //     { "correct": false, "text": "are"},
+  //     { "correct": true, "text": "be"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+  // {
+  //   "question": "If he _____ feeling better we would go.",
+  //   "choices": [
+  //     { "correct": true, "text": "were"},
+  //     { "correct": false, "text": "was"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+  // {
+  //   "question": "It is important that we _____ home as soon as we arrive.",
+  //   "choices": [
+  //     { "correct": true, "text": "call"},
+  //     { "correct": false, "text": "called"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+  // {
+  //   "question": "The landlord requested that John _____ out of the apartment.",
+  //   "choices": [
+  //     { "correct": true, "text": "move"},
+  //     { "correct": false, "text": "moves"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+  // {
+  //   "question": "We want the windows _____ washed before Friday.",
+  //   "choices": [
+  //     { "correct": false, "text": "be"},
+  //     { "correct": true, "text": "to be"},
+  //   ],
+  //   category: "Subjunctive Quiz",
+  // },
+
   {
-    "question": "It is essential that she _____ at the meeting.",
+    "question": `Which sentence is in the active voice?`,
     "choices": [
-      { "correct": true, "text": "be"},
-      { "correct": false, "text": "is"},
+      { "correct": true, "text": "John wrote the song."},
+      { "correct": false, "text": "The song was written by John."},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
   {
-    "question": "If I _____ you I would call her tonight.",
+    "question": `In the active voice, the action is done by`,
     "choices": [
-      { "correct": false, "text": "was"},
-      { "correct": true, "text": "were"},
+      { "correct": true, "text": "the subject before the verb"},
+      { "correct": false, "text": "the object after the verb"},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
   {
-    "question": "It is necessary that every student _____ a uniform.",
+    "question": `Adjectives are words that describe`,
     "choices": [
-      { "correct": true, "text": "wear"},
-      { "correct": false, "text": "wears"},
+      { "correct": false, "text": "verbs or adverbs"},
+      { "correct": true, "text": "nouns or pronouns"},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
   {
-    "question": "I hope that he _____ his homework on time.",
+    "question": `In which sentence is "fast" an adjective?`,
     "choices": [
-      { "correct": false, "text": "finish"},
-      { "correct": true, "text": "finishes"},
+      { "correct": true, "text": "He’s a fast runner."},
+      { "correct": false, "text": "He can run fast."},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
   {
-    "question": "The doctors recommended that she _____ a holiday.",
+    "question": `An adverb is a word that can modify`,
     "choices": [
-      { "correct": true, "text": "take"},
-      { "correct": false, "text": "takes"},
+      { "correct": false, "text": "nouns"},
+      { "correct": true, "text": "verbs"},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
   {
-    "question": "The boss asks that you _____ early for your first day of work.",
+    "question": `In which sentence is "fast" an adverb?`,
     "choices": [
-      { "correct": false, "text": "are"},
-      { "correct": true, "text": "be"},
+      { "correct": false, "text": "He’s got a fast car."},
+      { "correct": true, "text": "He drives fast."},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
   {
-    "question": "If he _____ feeling better we would go.",
+    "question": `Which of these articles is an indefinite article?`,
     "choices": [
-      { "correct": true, "text": "were"},
-      { "correct": false, "text": "was"},
+      { "correct": true, "text": "a"},
+      { "correct": false, "text": "the"},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
   {
-    "question": "It is important that we _____ home as soon as we arrive.",
+    "question": `Which sentence contains a definite article?`,
     "choices": [
-      { "correct": true, "text": "call"},
-      { "correct": false, "text": "called"},
+      { "correct": false, "text": "We saw a movie."},
+      { "correct": true, "text": "The movie was great."},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
   {
-    "question": "The landlord requested that John _____ out of the apartment.",
+    "question": `An auxiliary verb is used with`,
     "choices": [
-      { "correct": true, "text": "move"},
-      { "correct": false, "text": "moves"},
+      { "correct": false, "text": "a proper noun"},
+      { "correct": true, "text": "a main verb"},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
   {
-    "question": "We want the windows _____ washed before Friday.",
+    "question": `In the question "Did you win?", which is the auxiliary verb?`,
     "choices": [
-      { "correct": false, "text": "be"},
-      { "correct": true, "text": "to be"},
+      { "correct": true, "text": "Did"},
+      { "correct": false, "text": "win"},
     ],
-    category: "Subjunctive Quiz",
+    category: "Grammar Vocabulary Quiz 1",
+    needExample: true,
   },
 
   // {
-  //   "question": "",
+  //   "question": ``,
   //   "choices": [
-  //     { "correct": false, "text": ""},
-  //     { "correct": false, "text": ""},
-  //     { "correct": false, "text": ""},
+  //     { "correct": false, "text": ``},
+  //     { "correct": false, "text": ``},
+  //     { "correct": false, "text": ``},
   //   ],
-  //   category: "",
+  //   category: ``,
   //   needExample: false,
   // },
 ]

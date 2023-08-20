@@ -97,12 +97,13 @@ Here is an English grammar multiple choice question in JSON format:
 ${JSON.stringify(questionObj, null, 2)}
 Explain why each choice is correct or wrong, by completing the sentence "is correct because ..." or "is wrong because ...", create and fill in the "explain" property in each choice.
 Create and fill in the "letter" property in each choice, such as "A", "B", "C", etc.
-${originalQuestionObj.needExample ? `Create an example sentence demostrating the correct answer, create and fill in the "example" property in the root JSON object.` : ''}
+Check whether need to add an example sentence to help me understand the question, and if so, create an example sentence to demonstrate the correct answer, add a sentence to highlight the words associated with the correct answer, create and fill in the "example" property in the root JSON object.
 Reply also in this JSON format, ensure the JSON format is correct.
 Add '------' around the JSON.
 Use "wrong" instead of "incorrect" all the time.
 
 Assistant:`
+// ${originalQuestionObj.needExample ? `Create an example sentence demostrating the correct answer, create and fill in the "example" property in the root JSON object.` : ''}
 
     }
 
@@ -193,7 +194,8 @@ Assistant:`,
             window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: wrongText });
         }
     })
-    if (originalQuestionObj.needExample) {
+    // if (originalQuestionObj.needExample) {
+    if (explainedQuestionObj.example) {
         const exampleText = `Example: ${explainedQuestionObj.example}`;
         window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: exampleText });
     }
