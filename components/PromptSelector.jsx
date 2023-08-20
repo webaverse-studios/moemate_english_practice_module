@@ -19,7 +19,7 @@ export const PromptSelector = ({onChat, value, setValue}) => {
     setIsOpen(!isOpen);
   }
 
-  const sendPrompt = async () => {
+  const createQuestion = async () => {
     // onChat({ type: 'text', value: `Make an intermediate-level English grammar single-choice question. Don't show me the answer immediately.` });
     // onChat({ type: 'text', value: `Make an intermediate-level English grammar single-choice question. Just write the question as is, don't change anything, don't speak anything else!` });
     // onChat({ type: 'text', value: `Make an ${level}-level English grammar ${type} question. Just write the question, don't speak anything else.` });
@@ -32,6 +32,14 @@ export const PromptSelector = ({onChat, value, setValue}) => {
     const name = window.companion.GetCharacterAttribute('name');
     await window.hooks.emit('english_practice:handle_create_question_skill', {name, level, point});
     window.hooks.emitSync("character:standby"); // todo: not correct timing
+  }
+
+  const selectQuestion = async () => {
+    window.hooks.emitSync("character:reset");
+    window.hooks.emitSync("character:processing");
+    const name = window.companion.GetCharacterAttribute('name');
+    await window.hooks.emit('english_practice:handle_select_question_skill', {name, level, point});
+    window.hooks.emitSync("character:standby");
   }
 
   const sendExplainWhy = () => {
@@ -87,7 +95,11 @@ export const PromptSelector = ({onChat, value, setValue}) => {
             <option key={"subordinate clause"} value={"subordinate clause"}>subordinate clause</option>
           </select>
 
-          <button onClick={sendPrompt}>Send</button>
+          <button onClick={createQuestion}>Create Question</button>
+
+          <br/>
+
+          <button onClick={selectQuestion}>Select Question</button>
 
           {/* <button onClick={sendExplainWhy}>Explain why</button>
 

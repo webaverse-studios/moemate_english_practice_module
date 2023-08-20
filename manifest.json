@@ -19,6 +19,7 @@
   ],
   "skills": [
     "skills/create_question.json.hbs",
+    "skills/select_question.json.hbs",
     "skills/check_answer.json.hbs"
   ],
   "scripts": [
