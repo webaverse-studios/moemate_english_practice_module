@@ -1,3 +1,5 @@
+// questions from https://www.englishclub.com/esl-quizzes/grammar/
+
 export const questions = [
   {
     "question": "Phrases are grammatical units that consist of",
@@ -5,7 +7,7 @@ export const questions = [
       { "correct": true, "text": "one or more words" },
       { "correct": false, "text": "more than one word" },
     ],
-    class: "Phrases Quiz",
+    category: "Phrases Quiz",
   },
   {
     "question": "A noun phrase with more than one word can consist of a noun and words that",
@@ -13,14 +15,220 @@ export const questions = [
       { "correct": false, "text": "replace the noun" },
       { "correct": true, "text": "qualify the noun" },
     ],
-    class: "Phrases Quiz",
+    category: "Phrases Quiz",
+    needExample: true,
   },
+
+  // {
+  //   "question": "We like ________ our grandmother on Sundays.",
+  //   "choices": [
+  //     { "correct": false, "text": "to visit"},
+  //     { "correct": false, "text": "visiting"},
+  //     { "correct": true, "text": "to visit/visiting"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+  // {
+  //   "question": "I might want ________ some money soon.",
+  //   "choices": [
+  //     { "correct": true, "text": "to borrow"},
+  //     { "correct": false, "text": "borrowing"},
+  //     { "correct": false, "text": "to borrow/borrowing"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+  // {
+  //   "question": "My father hates ________ a tie to work.",
+  //   "choices": [
+  //     { "correct": false, "text": "to wear"},
+  //     { "correct": false, "text": "wearing"},
+  //     { "correct": true, "text": "to wear/wearing"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+  // {
+  //   "question": "We can't afford ________ a vacation this summer.",
+  //   "choices": [
+  //     { "correct": true, "text": "to take"},
+  //     { "correct": false, "text": "taking"},
+  //     { "correct": false, "text": "to take/taking"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+  // {
+  //   "question": "The company was pleased ________ your thank-you letter.",
+  //   "choices": [
+  //     { "correct": true, "text": "to receive"},
+  //     { "correct": false, "text": "receiving"},
+  //     { "correct": false, "text": "to receive/receiving"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+  // {
+  //   "question": "Would you mind ________ a window?",
+  //   "choices": [
+  //     { "correct": false, "text": "to open"},
+  //     { "correct": true, "text": "opening"},
+  //     { "correct": false, "text": "to open/opening"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+  // {
+  //   "question": "My suitcase is light enough ________ this time.",
+  //   "choices": [
+  //     { "correct": true, "text": "to carry"},
+  //     { "correct": false, "text": "carrying"},
+  //     { "correct": false, "text": "to carry/carrying"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+  // {
+  //   "question": "She cannot leave the table without ________ her dinner.",
+  //   "choices": [
+  //     { "correct": false, "text": "to finish"},
+  //     { "correct": true, "text": "finishing"},
+  //     { "correct": false, "text": "to finish/finishing"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+  // {
+  //   "question": "The music will continue ________ until you turn it off.",
+  //   "choices": [
+  //     { "correct": false, "text": "to play"},
+  //     { "correct": false, "text": "playing"},
+  //     { "correct": true, "text": "to play/playing"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+  // {
+  //   "question": "My little brother dislikes ________ his hair brushed.",
+  //   "choices": [
+  //     { "correct": false, "text": "to have"},
+  //     { "correct": true, "text": "having"},
+  //     { "correct": false, "text": "to have/having"},
+  //   ],
+  //   category: "Infinitive or -ing Quiz",
+  // },
+
+
+  {
+    "question": "Can you swim?",
+    "choices": [
+      { "correct": false, "text": "In a pool"},
+      { "correct": true, "text": "Yes, I can"},
+      { "correct": false, "text": "Very good"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
+  {
+    "question": "Did he go to work or to school?",
+    "choices": [
+      { "correct": true, "text": "To work"},
+      { "correct": false, "text": "No, he doesn't"},
+      { "correct": false, "text": "At 3:00 PM"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
+  {
+    "question": "Has your class finished?",
+    "choices": [
+      { "correct": true, "text": "Yes, it has"},
+      { "correct": false, "text": "In five minutes"},
+      { "correct": false, "text": "It's English"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
+  {
+    "question": "Where is my pen?",
+    "choices": [
+      { "correct": false, "text": "Because it's lost"},
+      { "correct": true, "text": "On the table"},
+      { "correct": false, "text": "No, you didn't"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
+  {
+    "question": "Who did you visit?",
+    "choices": [
+      { "correct": false, "text": "I visit my mother"},
+      { "correct": false, "text": "Yes, I did"},
+      { "correct": true, "text": "I visited Judy"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
+  {
+    "question": "Shall we go to your place or mine?",
+    "choices": [
+      { "correct": true, "text": "My place"},
+      { "correct": false, "text": "It is yours"},
+      { "correct": false, "text": "Yes, we shall"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
+  {
+    "question": "When will Lucy arrive?",
+    "choices": [
+      { "correct": true, "text": "At 7 PM"},
+      { "correct": false, "text": "No, she won't"},
+      { "correct": false, "text": "From France"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
+  {
+    "question": "Who called here so late?",
+    "choices": [
+      { "correct": false, "text": "It's midnight"},
+      { "correct": true, "text": "It was Ryan"},
+      { "correct": false, "text": "Yes, I called"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
+  {
+    "question": "Do you want to watch a movie?",
+    "choices": [
+      { "correct": false, "text": "At the cinema"},
+      { "correct": false, "text": "Yes, I watched it"},
+      { "correct": true, "text": "No, I don't"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
+  {
+    "question": "Have you done the laundry?",
+    "choices": [
+      { "correct": false, "text": "Yes, I do"},
+      { "correct": false, "text": "On Wednesdays"},
+      { "correct": true, "text": "No, I haven't"},
+    ],
+    category: "Questions Quiz",
+    needExample: false,
+  },
+
   // {
   //   "question": "",
   //   "choices": [
   //     { "correct": false, "text": ""},
   //     { "correct": false, "text": ""},
+  //     { "correct": false, "text": ""},
   //   ],
-  //   class: "Phrases Quiz",
+  //   category: "",
+  //   needExample: false,
   // },
 ]

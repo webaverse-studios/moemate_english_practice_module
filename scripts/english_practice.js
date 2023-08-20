@@ -1,8 +1,9 @@
 
 import { questions } from './question_bank.js';
 
-let lastExplainedQuestionObj = {};
-// let lastQuestionText = '';
+let originalQuestionObj = {};
+let questionObj = {};
+let explainedQuestionObj = {};
 
 function indexToLetter(index) {
     return String.fromCharCode(65 + index);
@@ -58,8 +59,8 @@ async function _handleCreateQuestionSkill(event) {
     }
 
     // randomly choose a question from questions
-    const originalQuestionObj = questions[Math.floor(Math.random() * questions.length)];
-    const questionObj = {
+    originalQuestionObj = questions[Math.floor(Math.random() * questions.length)];
+    questionObj = {
         question: originalQuestionObj.question,
         choices: originalQuestionObj.choices,
     }
@@ -95,9 +96,9 @@ You are now role-playing as a senior English teacher.
 Here is an English grammar multiple choice question in JSON format:
 ${JSON.stringify(questionObj, null, 2)}
 Explain why each choice is correct or wrong, by completing the sentence "is correct because ..." or "is wrong because ...", create and fill in the "explain" property in each choice.
-Create "letter"s for each choice, such as "A", "B", "C", etc.
-Create an example sentence demostrating the correct answer, create and fill in the "example" property in the root JSON object.
-Reply also in this JSON format.
+Create and fill in the "letter" property in each choice, such as "A", "B", "C", etc.
+${originalQuestionObj.needExample ? `Create an example sentence demostrating the correct answer, create and fill in the "example" property in the root JSON object.` : ''}
+Reply also in this JSON format, ensure the JSON format is correct.
 Add '------' around the JSON.
 Use "wrong" instead of "incorrect" all the time.
 
@@ -131,16 +132,16 @@ Assistant:`
     console.log('------ _handleCreateQuestionSkill prompt:', context.messages)
     console.log('------ _handleCreateQuestionSkill response:', response.completion)
     const responseArray = response.completion.split('------');
-    lastExplainedQuestionObj = JSON.parse(responseArray[1])
-    console.log('------ lastExplainedQuestionObj:', lastExplainedQuestionObj)
+    explainedQuestionObj = JSON.parse(responseArray[1])
+    console.log('------ explainedQuestionObj:', explainedQuestionObj)
 
     // const hereIsAQuestion = responseArray[0].trim();
     // if (hereIsAQuestion) window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: hereIsAQuestion });
     // lastQuestionText = '';
-    const questionText = lastExplainedQuestionObj.question
+    const questionText = explainedQuestionObj.question
     // lastQuestionText += questionText;
     window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: questionText });
-    lastExplainedQuestionObj.choices.forEach((choice, i) => {
+    explainedQuestionObj.choices.forEach((choice, i) => {
         // const choiceText = `${indexToLetter(i)}) ${choice.text}`;
         const choiceText = `${choice.letter}) ${choice.text}`;
         // lastQuestionText += '\n' + choiceText;
@@ -156,8 +157,8 @@ async function _handleCheckAnswerSkill(event) {
     // debugger
     console.log('------  _handleCheckAnswerSkill event:', event)
 
-    const correctChoice = lastExplainedQuestionObj.choices.find(choice => choice.correct);
-    const correctChoiceIndex = lastExplainedQuestionObj.choices.findIndex(choice => choice.correct);
+    const correctChoice = explainedQuestionObj.choices.find(choice => choice.correct);
+    const correctChoiceIndex = explainedQuestionObj.choices.findIndex(choice => choice.correct);
     const correctChoiceLetter = indexToLetter(correctChoiceIndex);
 
     const userAnswer = event.messages.slice(-1)[0].value.substring(1);
@@ -181,7 +182,7 @@ Assistant:`,
     const correctText = `${correctChoiceLetter}) ${correctChoice.explain}`;
     // const correctText = correctChoice.explain;
     window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: correctText });
-    lastExplainedQuestionObj.choices.forEach((choice, i) => {
+    explainedQuestionObj.choices.forEach((choice, i) => {
         if (!choice.correct) {
             const wrongChoice = choice
             const wrongChoiceIndex = i;
@@ -192,8 +193,10 @@ Assistant:`,
             window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: wrongText });
         }
     })
-    const exampleText = `Example: ${lastExplainedQuestionObj.example}`;
-    window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: exampleText });
+    if (originalQuestionObj.needExample) {
+        const exampleText = `Example: ${explainedQuestionObj.example}`;
+        window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: exampleText });
+    }
 
     // const lines = response.completion.split('\n');
     // lines.forEach(line => {
