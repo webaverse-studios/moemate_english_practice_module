@@ -1,5 +1,7 @@
 
-let lastQuestionObj = {};
+import { questions } from './question_bank.js';
+
+let lastExplainedQuestionObj = {};
 // let lastQuestionText = '';
 
 function indexToLetter(index) {
@@ -44,6 +46,7 @@ const interestTags = [ // increase the variety of questions
 ];
 
 async function _handleCreateQuestionSkill(event) {
+    // debugger
 
     window.companion.SendMessage({ type: "CREATE_QUESTION", user: event.name, value: 'Creating English practice question.', timestamp: Date.now(), alt: 'alt' });
 
@@ -54,45 +57,46 @@ async function _handleCreateQuestionSkill(event) {
         pointAndSpace = 'tenses';
     }
 
+    // randomly choose a question from questions
+    const originalQuestionObj = questions[Math.floor(Math.random() * questions.length)];
+    const questionObj = {
+        question: originalQuestionObj.question,
+        choices: originalQuestionObj.choices,
+    }
+
     const context = {
 
-//         messages: `\n\nHuman:
-// You are now role-playing as a senior English teacher.
-// Here is an English grammar multiple choice question in JSON format:
-// {
-//     "question": "A prepositional phrase consists of a preposition and its",
-//     "choices": [
-//         {"letter": "A", "correct": true, text: "object", "explain": "A) is correct because ..."},
-//         {"letter": "B", "correct": false, text: "subject", "explain": "B) is wrong because ..."}
-//     ],
-//     "examples": [
-//         "...",
-//         "...",
-//         "..."
-//     ]
+        //         messages: `\n\nHuman:
+        // You are now role-playing as a senior English teacher.
+        // Here is an English grammar multiple choice question in JSON format:
+        // {
+        //     "question": "A prepositional phrase consists of a preposition and its",
+        //     "choices": [
+        //         {"letter": "A", "correct": true, text: "object", "explain": "A) is correct because ..."},
+        //         {"letter": "B", "correct": false, text: "subject", "explain": "B) is wrong because ..."}
+        //     ],
+        //     "examples": [
+        //         "...",
+        //         "...",
+        //         "..."
+        //     ]
 
-// }
-// Explain why they are correct or wrong, and fill in the "explain" property.
-// Create some examples sentence demostrating the correct answer, and fill in the "examples" property.
-// Reply also in this JSON format.
-// Add '------' around the JSON.
-// Use "wrong" instead of "incorrect" all the time.
+        // }
+        // Explain why they are correct or wrong, and fill in the "explain" property.
+        // Create some examples sentence demostrating the correct answer, and fill in the "examples" property.
+        // Reply also in this JSON format.
+        // Add '------' around the JSON.
+        // Use "wrong" instead of "incorrect" all the time.
 
-// Assistant:`
+        // Assistant:`
 
         messages: `\n\nHuman:
 You are now role-playing as a senior English teacher.
 Here is an English grammar multiple choice question in JSON format:
-{
-    "question": "A prepositional phrase consists of a preposition and its",
-    "choices": [
-        {"correct": true, "text": "object", "explain": "..."},
-        {"correct": false, "text": "subject", "explain": "..."}
-    ],
-    "example": "..."
-}
-Explain why they are correct or wrong, by completing the sentence "is correct because ..." or "is wrong because ...", and fill in the "explain" property.
-Create an example sentence demostrating the correct answer, and fill in the "example" property.
+${JSON.stringify(questionObj, null, 2)}
+Explain why each choice is correct or wrong, by completing the sentence "is correct because ..." or "is wrong because ...", create and fill in the "explain" property in each choice.
+Create "letter"s for each choice, such as "A", "B", "C", etc.
+Create an example sentence demostrating the correct answer, create and fill in the "example" property in the root JSON object.
 Reply also in this JSON format.
 Add '------' around the JSON.
 Use "wrong" instead of "incorrect" all the time.
@@ -100,6 +104,26 @@ Use "wrong" instead of "incorrect" all the time.
 Assistant:`
 
     }
+
+    /*
+    {
+        "question": "A prepositional phrase consists of a preposition and its",
+        "choices": [
+            {
+            "correct": true, 
+            "text": "object",
+            "explain": "is correct because a prepositional phrase consists of a preposition followed by its object."
+            },
+            {
+            "correct": false,
+            "text": "subject", 
+            "explain": "is wrong because a prepositional phrase does not contain a subject, only a preposition and its object."
+            }
+        ],
+        "example": "In the example 'under the bridge', 'under' is the preposition and 'the bridge' is its object."
+    }
+    */
+
     console.log('------ _handleCreateQuestionSkill prompt before await:', context.messages)
     const model = window.models.CreateModel('english_practice:check_answer')
     window.models.ApplyContextObject(model, context);
@@ -107,18 +131,18 @@ Assistant:`
     console.log('------ _handleCreateQuestionSkill prompt:', context.messages)
     console.log('------ _handleCreateQuestionSkill response:', response.completion)
     const responseArray = response.completion.split('------');
-    lastQuestionObj = JSON.parse(responseArray[1])
-    console.log('------ lastQuestionObj:', lastQuestionObj)
+    lastExplainedQuestionObj = JSON.parse(responseArray[1])
+    console.log('------ lastExplainedQuestionObj:', lastExplainedQuestionObj)
 
     // const hereIsAQuestion = responseArray[0].trim();
     // if (hereIsAQuestion) window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: hereIsAQuestion });
     // lastQuestionText = '';
-    const questionText = lastQuestionObj.question
+    const questionText = lastExplainedQuestionObj.question
     // lastQuestionText += questionText;
     window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: questionText });
-    lastQuestionObj.choices.forEach((choice, i) => {
+    lastExplainedQuestionObj.choices.forEach((choice, i) => {
         // const choiceText = `${indexToLetter(i)}) ${choice.text}`;
-        const choiceText = `${choice.letter} ${choice.text}`;
+        const choiceText = `${choice.letter}) ${choice.text}`;
         // lastQuestionText += '\n' + choiceText;
         window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: choiceText });
     })
@@ -132,8 +156,8 @@ async function _handleCheckAnswerSkill(event) {
     // debugger
     console.log('------  _handleCheckAnswerSkill event:', event)
 
-    const correctChoice = lastQuestionObj.choices.find(choice => choice.correct);
-    const correctChoiceIndex = lastQuestionObj.choices.findIndex(choice => choice.correct);
+    const correctChoice = lastExplainedQuestionObj.choices.find(choice => choice.correct);
+    const correctChoiceIndex = lastExplainedQuestionObj.choices.findIndex(choice => choice.correct);
     const correctChoiceLetter = indexToLetter(correctChoiceIndex);
 
     const userAnswer = event.messages.slice(-1)[0].value.substring(1);
@@ -154,18 +178,22 @@ Assistant:`,
     // return;
 
     // const correctText = `The correct answer is ${correctChoiceLetter}) because ${firstLetterToLower(correctChoice.explain)}`;
-    const correctText = correctChoice.explain;
+    const correctText = `${correctChoiceLetter}) ${correctChoice.explain}`;
+    // const correctText = correctChoice.explain;
     window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: correctText });
-    lastQuestionObj.choices.forEach((choice, i) => {
+    lastExplainedQuestionObj.choices.forEach((choice, i) => {
         if (!choice.correct) {
             const wrongChoice = choice
             const wrongChoiceIndex = i;
             const wrongChoiceLetter = indexToLetter(wrongChoiceIndex);
             // const wrongText = `${wrongChoiceLetter}) is wrong because ${firstLetterToLower(wrongChoice.explain)}`;
-            const wrongText = wrongChoice.explain;
+            const wrongText = `${wrongChoiceLetter}) ${wrongChoice.explain}`;
+            // const wrongText = wrongChoice.explain;
             window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: wrongText });
         }
     })
+    const exampleText = `Example: ${lastExplainedQuestionObj.example}`;
+    window.hooks.emit('moemate_core:handle_skill_text', { name: event.name, value: exampleText });
 
     // const lines = response.completion.split('\n');
     // lines.forEach(line => {
