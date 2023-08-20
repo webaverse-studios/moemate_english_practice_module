@@ -3,11 +3,15 @@ Gives companion the ability to `create` or `select` English practice questions a
 
 Fix https://github.com/webaverse-studios/moemate/issues/1301
 
+---
+
 Type `create question`, or press the `Create Question` button in chat input, to let AI create a question and generate explanations for each choice.
 
 Type `>` + `your answer` to answer the question.
 
 ![image](https://github.com/webaverse-studios/moemate_english_practice_module/assets/10785634/5e3d7f44-2446-4874-9d7d-b79bbbc809cb)
+
+---
 
 Type `select question`, or press the `Select Question` button in chat input, to randomly select a question from the question bank, and let AI generate explanations for each choice.
 
