@@ -86,14 +86,13 @@ Here is an English grammar multiple choice question in JSON format:
 {
     "question": "A prepositional phrase consists of a preposition and its",
     "choices": [
-        {"letter": "{letter}", "correct": true, text: "object", "explain": "{letter} is correct because ..."},
-        {"letter": "{letter}", "correct": false, text: "subject", "explain": "{letter} is wrong because ..."},
+        {"correct": true, "text": "object", "explain": "..."},
+        {"correct": false, "text": "subject", "explain": "..."}
     ],
-    "example": "...",
+    "example": "..."
 }
-Create "letter"s for each choice, such as "A)", "B)", "C)", etc.
-Explain why they are correct or wrong, and fill in the "explain" property.
-Create an example FULL sentence demostrating the correct answer, and fill in the "example" property.
+Explain why they are correct or wrong, by completing the sentence "is correct because ..." or "is wrong because ...", and fill in the "explain" property.
+Create an example sentence demostrating the correct answer, and fill in the "example" property.
 Reply also in this JSON format.
 Add '------' around the JSON.
 Use "wrong" instead of "incorrect" all the time.
