@@ -49,7 +49,7 @@ const interestTags = [ // increase the variety of questions
 async function _handleCreateQuestionSkill(event) {
     // debugger
 
-    window.companion.SendMessage({ type: "CREATE_QUESTION", user: event.name, value: 'Creating English practice question.', timestamp: Date.now(), alt: 'alt' });
+    window.companion.SendMessage({ type: "CREATE_QUESTION", user: event.name, value: 'Selecting English practice question.', timestamp: Date.now(), alt: 'alt' });
 
     let pointAndSpace = '';
     if (event.point) {
