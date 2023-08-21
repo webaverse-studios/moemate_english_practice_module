@@ -234,20 +234,27 @@ async function _handleCheckAnswerSkill(event) {
     const correctChoiceLetter = indexToLetter(correctChoiceIndex);
 
     const userAnswer = event.messages.slice(-1)[0].value.substring(1);
-    const context = {
-        messages: `\n\nHuman:
+
+    const needAiCheckAnswer = false;
+    if (needAiCheckAnswer) {
+        const context = {
+            messages: `\n\nHuman:
 Here's my answer: ${userAnswer}.
 The correct answer is: ${correctChoiceLetter}.
 Check if my answer is correct or wrong, then reply and only reply "correct" or "wrong", don't reply anything else;
 
 Assistant:`,
+        }
+        const model = window.models.CreateModel('english_practice:check_answer')
+        window.models.ApplyContextObject(model, context);
+        const response = await window.models.CallModel(model);
+        console.log('------ _handleCheckAnswerSkill prompt:', context.messages)
+        console.log('------  _handleCheckAnswerSkill response:', response.completion)
+        window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: `Your answer is ${response.completion.trim()}.`, timestamp: Date.now(), alt: 'alt' });
+    } else {
+        const isCorrect = userAnswer.trim().toLowerCase() === correctChoiceLetter.trim().toLowerCase();
+        window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: `Your answer is ${isCorrect ? 'correct' : 'wrong'}.`, timestamp: Date.now(), alt: 'alt' });
     }
-    const model = window.models.CreateModel('english_practice:check_answer')
-    window.models.ApplyContextObject(model, context);
-    const response = await window.models.CallModel(model);
-    console.log('------ _handleCheckAnswerSkill prompt:', context.messages)
-    console.log('------  _handleCheckAnswerSkill response:', response.completion)
-    window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: `Your answer is ${response.completion.trim()}.`, timestamp: Date.now(), alt: 'alt' });
     // return;
 
     // const correctText = `The correct answer is ${correctChoiceLetter}) because ${firstLetterToLower(correctChoice.explain)}`;
