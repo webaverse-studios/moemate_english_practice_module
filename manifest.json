@@ -15,7 +15,7 @@
     "verified": "0.9.3"
   },
   "models": [
-    "models/check_answer.json.hbs"
+    "models/claude.json.hbs"
   ],
   "skills": [
     "skills/create_question.json.hbs",
