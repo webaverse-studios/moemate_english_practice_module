@@ -89,7 +89,7 @@ Assistant:`
 
     }
     console.log('------ _handleCreateQuestionSkill prompt before await:', context.messages)
-    const model = window.models.CreateModel('english_practice:check_answer')
+    const model = window.models.CreateModel('english_practice:Claude v2')
     window.models.ApplyContextObject(model, context);
     const response = await window.models.CallModel(model);
     console.log('------ _handleCreateQuestionSkill prompt:', context.messages)
@@ -198,7 +198,7 @@ Assistant:`
     */
 
     console.log('------ _handleCreateQuestionSkill prompt before await:', context.messages)
-    const model = window.models.CreateModel('english_practice:check_answer')
+    const model = window.models.CreateModel('english_practice:Claude v2')
     window.models.ApplyContextObject(model, context);
     const response = await window.models.CallModel(model);
     console.log('------ _handleCreateQuestionSkill prompt:', context.messages)
@@ -245,7 +245,7 @@ Check if my answer is correct or wrong, then reply and only reply "correct" or "
 
 Assistant:`,
         }
-        const model = window.models.CreateModel('english_practice:check_answer')
+        const model = window.models.CreateModel('english_practice:Claude v2')
         window.models.ApplyContextObject(model, context);
         const response = await window.models.CallModel(model);
         console.log('------ _handleCheckAnswerSkill prompt:', context.messages)
