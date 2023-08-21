@@ -251,6 +251,7 @@ Assistant:`,
         console.log('------ _handleCheckAnswerSkill prompt:', context.messages)
         console.log('------  _handleCheckAnswerSkill response:', response.completion)
         window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: `Your answer is ${response.completion.trim()}.`, timestamp: Date.now(), alt: 'alt' });
+        window.models.DestroyModel(model);
     } else {
         const isCorrect = userAnswer.trim().toLowerCase() === correctChoiceLetter.trim().toLowerCase();
         window.companion.SendMessage({ type: "CHECK_ANSWER", user: event.name, value: `Your answer is ${isCorrect ? 'correct' : 'wrong'}.`, timestamp: Date.now(), alt: 'alt' });
@@ -284,7 +285,6 @@ Assistant:`,
     //     window.hooks.emit('moemate_core:handle_skill_text', {name: event.name, value: line});
     // })
 
-    window.models.DestroyModel(model);
     const isStop = true;
     return isStop;
 }
