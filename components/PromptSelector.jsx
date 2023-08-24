@@ -42,6 +42,16 @@ export const PromptSelector = ({onChat, value, setValue}) => {
     window.hooks.emitSync("character:standby");
   }
 
+  const answerQuestion = async () => {
+    window.hooks.emitSync("character:reset");
+    window.hooks.emitSync("character:processing");
+    const name = window.companion.GetCharacterAttribute('name');
+    window.companion.SendMessage({ type: "TEXT", user: '@user', value, timestamp: Date.now(), alt: 'alt' });
+    const messages = [{value}];
+    await window.hooks.emit('english_practice:handle_check_answer_skill', {name, messages});
+    window.hooks.emitSync("character:standby");
+  }
+
   const sendExplainWhy = () => {
     onChat({ type: 'text', value: `Explain why.` });
   }
@@ -100,6 +110,8 @@ export const PromptSelector = ({onChat, value, setValue}) => {
           <br/>
 
           <button onClick={selectQuestion}>Select Question</button>
+
+          <button onClick={answerQuestion}>Answer Question</button>
 
           {/* <button onClick={sendExplainWhy}>Explain why</button>
 

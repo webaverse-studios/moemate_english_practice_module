@@ -226,14 +226,17 @@ Assistant:`
 }
 
 async function _handleCheckAnswerSkill(event) {
-    // debugger
     console.log('------  _handleCheckAnswerSkill event:', event)
 
     const correctChoice = explainedQuestionObj.choices.find(choice => choice.correct);
     const correctChoiceIndex = explainedQuestionObj.choices.findIndex(choice => choice.correct);
     const correctChoiceLetter = indexToLetter(correctChoiceIndex);
 
-    const userAnswer = event.messages.slice(-1)[0].value.substring(1);
+    let userAnswer = event.messages.slice(-1)[0].value;
+    if (userAnswer.startsWith('>')) {
+        userAnswer = userAnswer.substring(1);
+    }
+    console.log('--- userAnswer:', userAnswer)
 
     const needAiCheckAnswer = false;
     if (needAiCheckAnswer) {
